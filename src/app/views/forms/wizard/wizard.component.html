@@ -13,7 +13,7 @@
 
     <form-wizard>
       <!-- [isValid]="registration.form.valid"  -->
-      <wizard-step [title]="'Dane'"(onNext)="onStep1Next($event)">
+      <wizard-step [title]="'Dane'" (onNext)="onStep1Next($event)">
         <form [formGroup]="registration">
           <div class="row">
             <div class="form-group col-md-12 mb-3">
@@ -116,20 +116,111 @@
       <wizard-step [title]="'Dostępność'" (onNext)="onStep3Next($event)">
         <form #paymentForm="ngForm">
           <div class="row">
-            <div class="form-group col-md-6 mb-3">
-              <label for="card">Card number</label>
-              <input type="text" class="form-control" id="card" name="card" placeholder="Card Number"
-                [(ngModel)]="data.card">
+            <div class="col-md-6 mb-3">
+              <h6 class="mb-2">Formy płatności</h6>
+              <label class="checkbox checkbox-primary">
+                <input type="checkbox">
+                <span>Gotówką</span>
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox checkbox-primary">
+                <input type="checkbox">
+                <span>Karta</span>
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox checkbox-primary">
+                <input type="checkbox">
+                <span>Zbliżeniowo</span>
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox checkbox-primary">
+                <input type="checkbox">
+                <span>Blikiem</span>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="col-md-6 mb-3">
+              <h6 class="mb-2">Formy dostawy</h6>
+              <label class="checkbox checkbox-primary">
+                <input type="checkbox">
+                <span>Dowóz</span>
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox checkbox-primary">
+                <input type="checkbox">
+                <span>Na miejscu</span>
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox checkbox-primary">
+                <input type="checkbox">
+                <span>Odbiór osobisty</span>
+                <span class="checkmark"></span>
+              </label>
             </div>
             <div class="form-group col-md-6 mb-3">
-              <label for="exp">Expires at</label>
-              <input type="text" class="form-control" id="exp" name="exp" placeholder="Expires at"
-                [(ngModel)]="data.cardExpiresAt">
+              <label for="range">Zasięg dostawy</label>
+              <input type="text" class="form-control" id="range" name="range" placeholder="Zasięg dostawy">
             </div>
-            <div class="form-group col-md-6 mb-3">
-              <label for="security">Security code</label>
-              <input type="text" class="form-control" id="security" name="exp" placeholder="Security code"
-                [(ngModel)]="data.code">
+            <div class="col-md-12 mb-3">
+              <div class="row">
+                <div class="col-12 text-left">
+                    <p class="mb-0 mt-3">Godziny otwarcia lokalu</p>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-12 col-md-6">
+                      <div class="md-form">
+                        <label for="openLocalHour">od:</label>
+                        <input type="time" id="openLocalFrom" class="form-control" name="openLocalFrom" >
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <div class="md-form">
+                        <label for="closeLocalHour">do:</label>
+                        <input type="time" id="openLocalTo" class="form-control" name="openLocalTo">
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12 text-left">
+                    <p class="mb-0 mt-3">GOdziny otwarcia kuchni</p>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-12 col-md-6">
+                      <div class="md-form">
+                        <label for="openKitchenHour">od:</label>
+                        <input type="time" id="openKitchenFrom" class="form-control" name="openKitchenFrom">
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <div class="md-form">
+                        <label for="closeKitchenHour">do:</label>
+                        <input type="time" id="openKitchenTo" class="form-control" name="openKitchenTo">
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12 text-left">
+                    <p class="mb-0 mt-3">Godziny dowozu</p>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-12 col-md-6">
+                      <div class="md-form">
+                        <label for="openDeliveryHour">od:</label>
+                        <input type="time" id="OpenDeliveryFrom" class="form-control" name="OpenDeliveryFrom">
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <div class="md-form">
+                        <label for="closeDeliveryHour">do:</label>
+                        <input type="time" id="OpenDeliveryTo" class="form-control" name="OpenDeliveryTo">
+                      </div>
+                  </div>
+              </div>
             </div>
           </div>
         </form>
@@ -138,20 +229,56 @@
       <wizard-step [title]="'Zdjęcia'" (onNext)="onStep3Next($event)">
         <form #paymentForm="ngForm">
           <div class="row">
-            <div class="form-group col-md-6 mb-3">
-              <label for="card">Card number</label>
-              <input type="text" class="form-control" id="card" name="card" placeholder="Card Number"
-                [(ngModel)]="data.card">
+
+            <div class="form-group col-md-12 mb-3">
+              <label for="security">Wyślij logo</label>
+              <!-- <input type="file" class="custom-file-input" id="uploadBackground" -->
+                                        <!-- aria-describedby="uploadBackground" [(ngModel)]="uploadedBackground" name="uploadedBackground" (change)="uploadBackground($event)"> -->
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">{{background ? background.name : 'Wyślij tło'}}</label>
+                </div>
+              </div>
             </div>
-            <div class="form-group col-md-6 mb-3">
-              <label for="exp">Expires at</label>
-              <input type="text" class="form-control" id="exp" name="exp" placeholder="Expires at"
-                [(ngModel)]="data.cardExpiresAt">
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12 mb-3">
+              <label for="security">Wyślij tło</label>
+              <!-- <input type="file" class="custom-file-input" id="uploadBackground"
+                                        aria-describedby="uploadBackground" [(ngModel)]="uploadedBackground" name="uploadedBackground" (change)="uploadBackground($event)"> -->
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">{{background ? background.name : 'Wyślij tło'}}</label>
+                </div>
+              </div>
             </div>
-            <div class="form-group col-md-6 mb-3">
-              <label for="security">Security code</label>
-              <input type="text" class="form-control" id="security" name="exp" placeholder="Security code"
-                [(ngModel)]="data.code">
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12 mb-3">
+              <label for="security">Wyślij menu</label>
+              <!-- <input type="file" class="custom-file-input" id="uploadBackground"
+                                        aria-describedby="uploadBackground" [(ngModel)]="uploadedBackground" name="uploadedBackground" (change)="uploadBackground($event)"> -->
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">{{background ? background.name : 'Wyślij tło'}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12 mb-3">
+              <label for="security">Wyślij pinezke</label>
+              <!-- <input type="file" class="custom-file-input" id="uploadBackground"
+                                        aria-describedby="uploadBackground" [(ngModel)]="uploadedBackground" name="uploadedBackground" (change)="uploadBackground($event)"> -->
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">{{background ? background.name : 'Wyślij tło'}}</label>
+                </div>
+              </div>
             </div>
           </div>
         </form>
