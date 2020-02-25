@@ -10,20 +10,22 @@
 
 <div class="row">
   <div class="col-md-12">
-   
+
     <form-wizard>
-      <wizard-step [title]="'Basic Info'" [isValid]="basicForm.form.valid" (onNext)="onStep1Next($event)">
+      <wizard-step [title]="'Dane'" [isValid]="basicForm.form.valid" (onNext)="onStep1Next($event)">
         <form #basicForm="ngForm">
           <div class="row">
-            <div class="form-group col-md-6 mb-3">
-              <label for="firstName">First Name</label>
-              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name"
-                [(ngModel)]="data.firstName">
+            <div class="form-group col-md-12 mb-3">
+              <label for="picker1">Miasto</label>
+              <select class="form-control">
+                  <option>Opole</option>
+                  <option>Wrocław</option>
+              </select>
             </div>
             <div class="form-group col-md-6 mb-3">
-              <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name"
-                [(ngModel)]="data.lastName">
+              <label for="localName">Nazwa lokalu</label>
+              <input type="text" class="form-control" id="lastNlocalNameame" name="localName" placeholder="Nazwa lokalu"
+                [(ngModel)]="data.localName">
             </div>
             <div class="form-group col-md-6">
               <label for="exampleInputEmail1">Email address</label>
@@ -39,7 +41,7 @@
         </form>
       </wizard-step>
 
-      <wizard-step [title]="'Company info'" [isValid]="step2Form.valid" (onNext)="onStep2Next($event)">
+      <wizard-step [title]="'Kategorie'" [isValid]="step2Form.valid" (onNext)="onStep2Next($event)">
         <form [formGroup]="step2Form">
           <div class="row">
             <div class="col-md-6">
@@ -82,7 +84,29 @@
         </form>
       </wizard-step>
 
-      <wizard-step [title]="'Payment Info'" (onNext)="onStep3Next($event)">
+      <wizard-step [title]="'Dostępność'" (onNext)="onStep3Next($event)">
+        <form #paymentForm="ngForm">
+          <div class="row">
+            <div class="form-group col-md-6 mb-3">
+              <label for="card">Card number</label>
+              <input type="text" class="form-control" id="card" name="card" placeholder="Card Number"
+                [(ngModel)]="data.card">
+            </div>
+            <div class="form-group col-md-6 mb-3">
+              <label for="exp">Expires at</label>
+              <input type="text" class="form-control" id="exp" name="exp" placeholder="Expires at"
+                [(ngModel)]="data.cardExpiresAt">
+            </div>
+            <div class="form-group col-md-6 mb-3">
+              <label for="security">Security code</label>
+              <input type="text" class="form-control" id="security" name="exp" placeholder="Security code"
+                [(ngModel)]="data.code">
+            </div>
+          </div>
+        </form>
+      </wizard-step>
+
+      <wizard-step [title]="'Zdjęcia'" (onNext)="onStep3Next($event)">
         <form #paymentForm="ngForm">
           <div class="row">
             <div class="form-group col-md-6 mb-3">
@@ -111,6 +135,6 @@
         </div>
       </wizard-step>
     </form-wizard>
-     
+
   </div>
 </div>
