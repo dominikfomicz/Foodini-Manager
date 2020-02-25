@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-wizard',
@@ -12,6 +12,23 @@ export class WizardComponent implements OnInit {
     email: ''
   };
   step2Form: FormGroup;
+  registration = new FormGroup({
+    cityName:  new FormControl('', [
+      Validators.required
+    ]),
+    localName:  new FormControl('', [
+      Validators.required
+    ]),
+    nip:  new FormControl('', [
+      Validators.required
+    ]),
+    adress:  new FormControl('', [
+      Validators.required
+    ]),
+    phoneNumber:  new FormControl('', [
+      Validators.required
+    ])
+  });
 
   constructor(
     private fb: FormBuilder

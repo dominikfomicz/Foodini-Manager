@@ -12,30 +12,59 @@
   <div class="col-md-12">
 
     <form-wizard>
-      <wizard-step [title]="'Dane'" [isValid]="basicForm.form.valid" (onNext)="onStep1Next($event)">
-        <form #basicForm="ngForm">
+      <!-- [isValid]="registration.form.valid"  -->
+      <wizard-step [title]="'Dane'"(onNext)="onStep1Next($event)">
+        <form [formGroup]="registration">
           <div class="row">
             <div class="form-group col-md-12 mb-3">
-              <label for="picker1">Miasto</label>
-              <select class="form-control">
+              <label for="cityName">Miasto</label>
+              <select class="form-control" [class.is-invalid] = "this.registration.get('cityName').invalid && this.registration.get('cityName').touched" formControlName="cityName">
                   <option>Opole</option>
                   <option>Wrocław</option>
               </select>
+              <div *ngIf="(this.registration.get('cityName').invalid && this.registration.get('cityName').touched) || this.registration.get('cityName').dirty">
+                <small *ngIf="this.registration.get('cityName').errors?.required" class="text-danger">Miasto jest wymagane</small>
+              </div>
             </div>
-            <div class="form-group col-md-6 mb-3">
+            <div class="form-group col-md-12 mb-3">
               <label for="localName">Nazwa lokalu</label>
-              <input type="text" class="form-control" id="lastNlocalNameame" name="localName" placeholder="Nazwa lokalu"
-                [(ngModel)]="data.localName">
+              <input type="text" class="form-control" id="localName" [class.is-invalid] = "this.registration.get('localName').invalid && this.registration.get('localName').touched" name="localName" formControlName="localName" placeholder="Nazwa lokalu">
+              <div *ngIf="(this.registration.get('localName').invalid && this.registration.get('localName').touched) || this.registration.get('localName').dirty">
+                <small *ngIf="this.registration.get('localName').errors?.required" class="text-danger">Nazwa lokalu jest wymagana</small>
+              </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
-                [(ngModel)]="data.email">
+              <label for="nip">NIP</label>
+              <input type="nip" class="form-control" id="nip" [class.is-invalid] = "this.registration.get('nip').invalid && this.registration.get('nip').touched" name="nip" aria-describedby="nip" placeholder="NIP" formControlName="nip">
+              <div *ngIf="(this.registration.get('nip').invalid && this.registration.get('nip').touched) || this.registration.get('nip').dirty">
+                <small *ngIf="this.registration.get('nip').errors?.required" class="text-danger">Nip jest wymagany</small>
+              </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="phone">Phone number</label>
-              <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number"
-                [(ngModel)]="data.phone">
+              <label for="adress">Adres</label>
+              <input type="text" class="form-control" id="adress" [class.is-invalid] = "this.registration.get('adress').invalid && this.registration.get('adress').touched" name="adress" placeholder="Adres lokalu" formControlName="adress">
+              <div *ngIf="(this.registration.get('adress').invalid && this.registration.get('adress').touched) || this.registration.get('adress').dirty">
+                <small *ngIf="this.registration.get('adress').errors?.required" class="text-danger">Nip jest wymagany</small>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="phoneNumber">Telefon</label>
+              <input type="text" class="form-control" id="phoneNumber" [class.is-invalid] = "this.registration.get('phoneNumber').invalid && this.registration.get('phoneNumber').touched" name="phoneNumber" placeholder="Numer Telefonu" formControlName="phoneNumber">
+              <div *ngIf="(this.registration.get('phoneNumber').invalid && this.registration.get('phoneNumber').touched) || this.registration.get('phoneNumber').dirty">
+                <small *ngIf="this.registration.get('phoneNumber').errors?.required" class="text-danger">Numer telefonu jest wymagany</small>
+              </div>
+            </div>
+            <div class="form-group col-12">
+              <label for="description">Opis</label>
+              <textarea class="form-control" aria-label="Description"></textarea>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="facebookUrl">Adres Facebook</label>
+              <input type="text" class="form-control" id="facebookUrl" name="facebookUrl" placeholder="Adres Facebook">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="instagramUrl">Adres Instagram</label>
+              <input type="text" class="form-control" id="instagramUrl" name="instagramUrl" placeholder="Adres Instagram">
             </div>
           </div>
         </form>
