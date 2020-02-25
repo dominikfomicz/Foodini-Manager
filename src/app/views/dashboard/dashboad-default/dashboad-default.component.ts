@@ -145,7 +145,7 @@ export class DashboadDefaultComponent implements OnInit {
                 },
                 {
                     name: 'Offline',
-                    data: [45000, 82000, 35000, 93000, 71000, 89000, 49000, 91000, 80200, 86000, 35000, 40050],
+                    data: [90000, 82000, 35000, 93000, 71000, 89000, 49000, 91000, 80200, 86000, 35000, 40050],
                     label: { show: false, color: '#639' },
                     type: 'bar',
                     color: '#7569b3',

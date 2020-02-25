@@ -3,6 +3,7 @@ import { SharedAnimations } from 'src/app/shared/animations/shared-animations';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Router, RouteConfigLoadStart, ResolveStart, RouteConfigLoadEnd, ResolveEnd } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-signin',
@@ -17,13 +18,14 @@ export class SigninComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private auth: AuthService,
-        private router: Router
+        private router: Router,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
         this.router.events.subscribe(event => {
             if (event instanceof RouteConfigLoadStart || event instanceof ResolveStart) {
-                this.loadingText = 'Loading Dashboard Module...';
+                this.loadingText = 'Logowanie...';
 
                 this.loading = true;
             }
@@ -33,19 +35,23 @@ export class SigninComponent implements OnInit {
         });
 
         this.signinForm = this.fb.group({
-            email: ['test@example.com', Validators.required],
-            password: ['1234', Validators.required]
+            email: ['', Validators.required],
+            password: ['', Validators.required]
         });
     }
 
     signin() {
-        this.loading = true;
-        this.loadingText = 'Sigining in...';
-        this.auth.signin(this.signinForm.value)
-            .subscribe(res => {
-                this.router.navigateByUrl('/dashboard/v1');
-                this.loading = false;
-            });
+        if(this.signinForm.valid === true){
+            this.loading = true;
+            this.loadingText = 'Logowanie...';
+            this.auth.signin(this.signinForm.value)
+                .subscribe(res => {
+                    this.router.navigateByUrl('/dashboard/v1');
+                    this.loading = false;
+                });
+        } else {
+            this.toastr.error('Proszę uzupełnić wszystkie pola', 'Błąd', { timeOut: 3000, closeButton: true, progressBar: true })
+        }
     }
 
 }

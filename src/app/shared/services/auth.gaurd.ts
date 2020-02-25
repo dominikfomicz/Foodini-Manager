@@ -13,7 +13,7 @@ export class AuthGaurd implements CanActivate {
   ) { }
 
   canActivate() {
-    if (this.auth.authenticated) {
+    if (this.auth.authenticationState.value === true) {
       return true;
     } else {
       this.router.navigateByUrl('/sessions/signin');
