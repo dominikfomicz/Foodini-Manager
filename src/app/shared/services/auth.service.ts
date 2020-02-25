@@ -39,9 +39,6 @@ export class AuthService {
   }
 
   signin(credentials) {
-    // this.store.setItem('token', 123);
-    // this.authenticationState.next(true);
-
     const post_data = new HttpParams()
     .set('username', credentials.email)
     .set('password', credentials.password)
@@ -56,7 +53,6 @@ export class AuthService {
           localStorage.setItem('token', data['access_token']);
           this.authenticationState.next(true);
 
-          //załadowanie linków do zarządzania dla managerów i kelnerów w menu
           const post_data = new HttpParams().set('uuid', credentials.email);
           this.http.post('http://repo.foodini.net.pl/auth-api/getUserStatus', post_data, this.httpOptions).subscribe(data => {
             if (data === -1) {
@@ -83,8 +79,8 @@ export class AuthService {
         }
       },
       err => {
-        of({}).pipe(delay(1500)).subscribe(res => this.toastr.error(err.message, 'Błąd', { timeOut: 3000, closeButton: true, progressBar: true }));
-        // console.log(err.message);
+        of({}).pipe(delay(1500)).subscribe(res => 
+          this.toastr.error(err.message, 'Błąd', { timeOut: 3000, closeButton: true, progressBar: true }));
       });
       return of({}).pipe(delay(1500));
 
