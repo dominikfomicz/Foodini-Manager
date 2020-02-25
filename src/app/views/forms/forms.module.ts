@@ -35,6 +35,9 @@ import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
     FormWizardModule,
     FormsRoutingModule
   ],
-  declarations: [BasicFormComponent, TagInputsComponent, AppImgCropperComponent, WizardComponent, InputMaskComponent, InputGroupsComponent, FormLayoutsComponent]
+  declarations: [BasicFormComponent, TagInputsComponent, AppImgCropperComponent, WizardComponent, InputMaskComponent, InputGroupsComponent, FormLayoutsComponent],
+  exports: [
+    WizardComponent
+  ]
 })
 export class AppFormsModule { }
